@@ -38,7 +38,7 @@ body{
 }
 body{
   background: linear-gradient(to right, #9EDDFF, #9EDDFF);
-  font-family: 'Comic Sans MS', cursive;
+  font-family: 'Comic Sans MS', sans-serif;
   /* , url('../public/bg-img.jpg');
 background-size: cover;
 background-position: center; */
