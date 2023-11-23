@@ -1,8 +1,8 @@
 import React from "react";
 import { toast } from "react-toastify";
 import "../App.css";
-import { Form, Button, Row, Col, Container, Image } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { Form, Button, Row, Col, Image } from "react-bootstrap";
+import { useState } from "react";
 import { query } from "../Controller/api";
 import Loader from "../components/Loader";
 const HomeScreen = () => {
@@ -51,8 +51,8 @@ const HomeScreen = () => {
       ];
       const imagePromises = queries.map(async (prompt) => {
         const { res, err } = await query({ inputs: prompt });
-        if (err) {
-          console.log(err);
+        if (err !== null) {
+          toast.error(err);
           setError(err);
           return;
         }
@@ -195,12 +195,22 @@ const HomeScreen = () => {
               <>
                 {result.map((imageUrl, index) => (
                   <Row>
-                    <Col md={9} style={{ display: "flex", flexWrap: "wrap" }}>
+                    <Col
+                      md={9}
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                      }}
+                    >
                       <Image
                         key={imageUrl}
                         src={imageUrl}
                         alt={`Comic Panel ${index + 1}`}
-                        style={{ margin: "2px", color: "white", width: "100%" }}
+                        style={{
+                          margin: "2px",
+                          color: "white",
+                          width: "100%",
+                        }}
                       />
                     </Col>
                   </Row>
