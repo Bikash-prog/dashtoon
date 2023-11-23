@@ -49,31 +49,25 @@ const HomeScreen = () => {
         text9,
         text10,
       ];
-      let errorFlag = false;
-      const imagePromises = queries.map(async (prompt) => {
-        const { res, err } = await query({ inputs: prompt });
-        if (err !== null) {
-          // toast.error(err);
-          setError(err);
-          errorFlag = true;
-          return;
-        }
-        return URL.createObjectURL(res);
-      });
-      if (errorFlag) {
-        toast.error(error);
+
+      try {
+        const imagePromises = queries.map(async (prompt) => {
+          const { res, _ } = await query({ inputs: prompt });
+          return URL.createObjectURL(res);
+        });
+        const images = await Promise.all(imagePromises);
+        setResult(images);
         setLoading(false);
-        return;
+      } catch (err) {
+        toast.error("Something went wrong!");
+        setLoading(false);
       }
-      const images = await Promise.all(imagePromises);
-      setResult(images);
-      setLoading(false);
     }
   };
   return (
     <Row>
       <Col md={3}>
-        <h1>Generate Comic</h1>
+        <h1 style={{ color: "#009e60", fontWeight: "800" }}>Generate Comic</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="text1" className="my-2">
             <Form.Control
@@ -170,7 +164,15 @@ const HomeScreen = () => {
           </Button>
         </Form>
       </Col>
-      <Col md={9} className="comic-div">
+      <Col
+        md={9}
+        className="comic-div"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
         {loading ? (
           <Loader />
         ) : (
@@ -188,6 +190,7 @@ const HomeScreen = () => {
           <>
             {result.length === 0 && (
               <h2
+                className="comic-text"
                 style={{
                   color: "white",
                   marginTop: "5px",
@@ -198,7 +201,6 @@ const HomeScreen = () => {
               </h2>
             )}
             {result.length !== 0 && (
-              //   <Container style={{ display: "flex", flexWrap: "wrap" }}>
               <>
                 {result.map((imageUrl, index) => (
                   <Row>
