@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+}
+
+body{
+  background-color: #F1EFEF;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body{
+  background: linear-gradient(to right, #9EDDFF, #9EDDFF);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  /* , url('../public/bg-img.jpg');
+background-size: cover;
+background-position: center; */
+}
+
+.comic-div{
+  background: #000;
+  position: relative;
+}
+
+.myTextInput{
+  font-size: 1.2rem;
+  padding: .5rem .5rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, .5);
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+.myTextInput:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  /* border-bottom: 3px solid rgba(40, 180, 133, 0.7); */
+}
+
+/* .myTextInput:focus:invalid {
+  border-bottom: 3px solid #FF7730;
+} */
+
+.generate-button{
+	display: block;
+	margin: .5rem auto;
+	border-radius: 2rem;
+	padding: .5rem 1.5rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+	font-family: Arimo;
+  background-color: #190482;
+  border: none;
+	transition: all .2s;
+  margin-top: 1.5rem;
+
+}
+.generate-button:hover{
+	transform: translateY(-.3px);
+  background-color: #0802A3;
+  box-shadow: 0 1.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
