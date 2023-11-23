@@ -49,15 +49,22 @@ const HomeScreen = () => {
         text9,
         text10,
       ];
+      let errorFlag = false;
       const imagePromises = queries.map(async (prompt) => {
         const { res, err } = await query({ inputs: prompt });
         if (err !== null) {
-          toast.error(err);
+          // toast.error(err);
           setError(err);
+          errorFlag = true;
           return;
         }
         return URL.createObjectURL(res);
       });
+      if (errorFlag) {
+        toast.error(error);
+        setLoading(false);
+        return;
+      }
       const images = await Promise.all(imagePromises);
       setResult(images);
       setLoading(false);
